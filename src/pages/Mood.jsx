@@ -80,30 +80,30 @@ const Mood = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 font-soft bg-offwhite dark:bg-dm-offblack min-h-screen transition-all duration-200">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Mood Tracker</h1>
-        <p className="text-gray-600 mt-2">
+      <div className="mb-2">
+        <h1 className="text-4xl font-bold text-lavender dark:text-dm-lavender mb-2">Mood Tracker</h1>
+        <p className="text-mint dark:text-dm-mint text-lg mt-2">
           Track your daily mood and emotional well-being patterns.
         </p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="card"
+          className="card bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Entries</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalEntries}</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Total Entries</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.totalEntries}</p>
             </div>
-            <div className="p-3 rounded-full bg-blue-100">
-              <Heart className="h-6 w-6 text-blue-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <Heart className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
@@ -112,15 +112,15 @@ const Mood = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="card"
+          className="card bg-mint dark:bg-dm-mint rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Average Mood</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.averageMood}/5</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Average Mood</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.averageMood}/5</p>
             </div>
-            <div className="p-3 rounded-full bg-green-100">
-              <TrendingUp className="h-6 w-6 text-green-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <TrendingUp className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
@@ -129,15 +129,15 @@ const Mood = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="card"
+          className="card bg-lavender dark:bg-dm-lavender rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Current Streak</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.currentStreak} days</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Current Streak</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.currentStreak} days</p>
             </div>
-            <div className="p-3 rounded-full bg-purple-100">
-              <Calendar className="h-6 w-6 text-purple-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <Calendar className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
@@ -146,29 +146,29 @@ const Mood = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="card"
+          className="card bg-blush dark:bg-dm-blush rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Best Mood</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.bestMood}/5</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Best Mood</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.bestMood}/5</p>
             </div>
-            <div className="p-3 rounded-full bg-yellow-100">
-              <Smile className="h-6 w-6 text-yellow-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <Smile className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
       </div>
 
       {/* Mood Input and Chart */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="card"
+          className="card bg-mint dark:bg-dm-mint rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">How are you feeling today?</h3>
+          <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender mb-4">How are you feeling today?</h3>
           <MoodInput onMoodSubmitted={() => window.location.reload()} />
         </motion.div>
 
@@ -176,9 +176,9 @@ const Mood = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="card"
+          className="card bg-lavender dark:bg-dm-lavender rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Mood Trends</h3>
+          <h3 className="text-xl font-semibold text-mint dark:text-dm-mint mb-4">Mood Trends</h3>
           <MoodChart />
         </motion.div>
       </div>
@@ -188,12 +188,12 @@ const Mood = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.7 }}
-        className="card"
+        className="card bg-cream dark:bg-dm-cream rounded-2xl shadow-soft p-8 transition-all duration-200"
       >
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Mood History</h3>
+        <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender mb-4">Recent Mood History</h3>
         {moods.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
-            <Heart className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+          <div className="text-center py-8 text-mint dark:text-dm-mint">
+            <Heart className="h-12 w-12 mx-auto mb-4 text-lavender dark:text-dm-lavender" />
             <p>No mood entries yet. Start tracking your mood!</p>
           </div>
         ) : (

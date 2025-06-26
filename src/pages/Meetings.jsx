@@ -40,11 +40,11 @@ const Meetings = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 font-soft bg-offwhite dark:bg-dm-offblack min-h-screen transition-all duration-200">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Meeting Analysis</h1>
-        <p className="text-gray-600 mt-2">
+      <div className="mb-2">
+        <h1 className="text-4xl font-bold text-lavender dark:text-dm-lavender mb-2">Meeting Analysis</h1>
+        <p className="text-mint dark:text-dm-mint text-lg mt-2">
           Analyze your meeting patterns and detect overload to improve work-life balance.
         </p>
       </div>
@@ -54,18 +54,18 @@ const Meetings = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="card"
+        className="card bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft p-8 transition-all duration-200"
       >
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className={`p-3 rounded-full ${connected ? 'bg-green-100' : 'bg-gray-100'}`}>
-              <Calendar className={`h-6 w-6 ${connected ? 'text-green-600' : 'text-gray-400'}`} />
+          <div className="flex items-center space-x-4">
+            <div className={`p-4 rounded-full ${connected ? 'bg-mint dark:bg-dm-mint' : 'bg-cream dark:bg-dm-cream'} shadow-soft`}>
+              <Calendar className={`h-7 w-7 ${connected ? 'text-lavender dark:text-dm-lavender' : 'text-mint dark:text-dm-mint'}`} />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">
+              <h3 className="font-semibold text-lavender dark:text-dm-lavender text-lg">
                 Google Calendar {connected ? 'Connected' : 'Not Connected'}
               </h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-base text-mint dark:text-dm-mint">
                 {connected 
                   ? 'Your calendar is connected and being analyzed'
                   : 'Connect your Google Calendar to analyze meeting patterns'
@@ -76,11 +76,11 @@ const Meetings = () => {
           {connected && (
             <div className="flex items-center space-x-2">
               <button className="btn-secondary flex items-center space-x-2">
-                <RefreshCw className="h-4 w-4" />
+                <RefreshCw className="h-5 w-5" />
                 <span>Refresh</span>
               </button>
               <button className="btn-secondary flex items-center space-x-2">
-                <Settings className="h-4 w-4" />
+                <Settings className="h-5 w-5" />
                 <span>Settings</span>
               </button>
             </div>
@@ -94,7 +94,7 @@ const Meetings = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="card"
+          className="card bg-mint dark:bg-dm-mint rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <GoogleCalendarConnect onConnect={handleConnect} />
         </motion.div>
@@ -106,7 +106,7 @@ const Meetings = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="card"
+          className="card bg-lavender dark:bg-dm-lavender rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <MeetingSummary />
         </motion.div>
@@ -118,68 +118,68 @@ const Meetings = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
         >
           {/* Meeting Patterns */}
-          <div className="card">
+          <div className="card bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft p-8 transition-all duration-200">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Meeting Patterns</h3>
-              <BarChart3 className="h-5 w-5 text-gray-400" />
+              <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender">Meeting Patterns</h3>
+              <BarChart3 className="h-6 w-6 text-mint dark:text-dm-mint" />
             </div>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-mint dark:bg-dm-mint rounded-2xl">
                 <div>
-                  <p className="font-medium text-gray-900">Most Active Day</p>
-                  <p className="text-sm text-gray-600">Tuesday</p>
+                  <p className="font-medium text-lavender dark:text-dm-lavender">Most Active Day</p>
+                  <p className="text-base text-mint dark:text-dm-mint">Tuesday</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-blue-600">5</p>
-                  <p className="text-xs text-gray-500">meetings</p>
+                  <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">5</p>
+                  <p className="text-xs text-mint dark:text-dm-mint">meetings</p>
                 </div>
               </div>
-              <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-blush dark:bg-dm-blush rounded-2xl">
                 <div>
-                  <p className="font-medium text-gray-900">Average Duration</p>
-                  <p className="text-sm text-gray-600">45 minutes</p>
+                  <p className="font-medium text-lavender dark:text-dm-lavender">Average Duration</p>
+                  <p className="text-base text-mint dark:text-dm-mint">45 minutes</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-green-600">45</p>
-                  <p className="text-xs text-gray-500">min</p>
+                  <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">45</p>
+                  <p className="text-xs text-mint dark:text-dm-mint">min</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Recommendations */}
-          <div className="card">
+          <div className="card bg-mint dark:bg-dm-mint rounded-2xl shadow-soft p-8 transition-all duration-200">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Recommendations</h3>
-              <AlertTriangle className="h-5 w-5 text-orange-400" />
+              <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender">Recommendations</h3>
+              <AlertTriangle className="h-6 w-6 text-blush dark:text-dm-blush" />
             </div>
             <div className="space-y-3">
-              <div className="flex items-start space-x-3 p-3 bg-orange-50 rounded-lg">
-                <AlertTriangle className="h-4 w-4 text-orange-500 mt-0.5" />
+              <div className="flex items-start space-x-4 p-4 bg-blush dark:bg-dm-blush rounded-2xl">
+                <AlertTriangle className="h-5 w-5 text-blush dark:text-dm-blush mt-1" />
                 <div>
-                  <p className="font-medium text-gray-900">Reduce Tuesday Meetings</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="font-medium text-lavender dark:text-dm-lavender">Reduce Tuesday Meetings</p>
+                  <p className="text-base text-mint dark:text-dm-mint">
                     Consider moving some meetings to less busy days
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
-                <Clock className="h-4 w-4 text-blue-500 mt-0.5" />
+              <div className="flex items-start space-x-4 p-4 bg-babyblue dark:bg-dm-babyblue rounded-2xl">
+                <Clock className="h-5 w-5 text-mint dark:text-dm-mint mt-1" />
                 <div>
-                  <p className="font-medium text-gray-900">Set Meeting Limits</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="font-medium text-lavender dark:text-dm-lavender">Set Meeting Limits</p>
+                  <p className="text-base text-mint dark:text-dm-mint">
                     Try to keep meetings under 30 minutes when possible
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3 p-3 bg-green-50 rounded-lg">
-                <CheckCircle className="h-4 w-4 text-green-500 mt-0.5" />
+              <div className="flex items-start space-x-4 p-4 bg-lavender dark:bg-dm-lavender rounded-2xl">
+                <CheckCircle className="h-5 w-5 text-mint dark:text-dm-mint mt-1" />
                 <div>
-                  <p className="font-medium text-gray-900">Block Focus Time</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="font-medium text-lavender dark:text-dm-lavender">Block Focus Time</p>
+                  <p className="text-base text-mint dark:text-dm-mint">
                     Schedule 2-hour blocks for deep work
                   </p>
                 </div>
@@ -194,10 +194,10 @@ const Meetings = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="card"
+        className="card bg-cream dark:bg-dm-cream rounded-2xl shadow-soft p-8 transition-all duration-200"
       >
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">How it works</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender mb-4">How it works</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">
             <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <span className="text-blue-600 font-bold">1</span>

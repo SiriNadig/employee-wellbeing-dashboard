@@ -5,44 +5,44 @@ const Header = ({ onMenuClick }) => {
   const { user, signOut } = useAuth();
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
+    <header className="bg-babyblue dark:bg-dm-babyblue shadow-soft border-none rounded-2xl px-8 py-4 my-4 mx-2 font-soft transition-all duration-200">
       <div className="flex items-center justify-between">
         {/* Mobile menu button */}
         <button
           onClick={onMenuClick}
-          className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+          className="md:hidden p-3 rounded-xl text-mint dark:text-dm-mint hover:bg-cream dark:hover:bg-dm-cream transition-all duration-200"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-6 w-6" />
         </button>
 
         {/* Logo */}
         <div className="hidden md:block">
-          <h1 className="text-xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-bold text-lavender dark:text-dm-lavender tracking-wide">
             Employee Well-Being Dashboard
           </h1>
         </div>
 
         {/* Right side */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           {/* Notifications */}
-          <button className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100">
-            <Bell className="h-5 w-5" />
+          <button className="p-3 rounded-xl text-mint dark:text-dm-mint hover:bg-cream dark:hover:bg-dm-cream transition-all duration-200">
+            <Bell className="h-6 w-6" />
           </button>
 
           {/* User menu */}
           <div className="relative">
-            <button className="flex items-center space-x-2 p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100">
-              <User className="h-5 w-5" />
-              <span className="hidden md:block text-sm font-medium">
+            <button className="flex items-center space-x-2 p-3 rounded-xl text-mint dark:text-dm-mint hover:bg-cream dark:hover:bg-dm-cream transition-all duration-200">
+              <User className="h-6 w-6" />
+              <span className="hidden md:block text-base font-semibold">
                 {user?.email?.split('@')[0] || 'User'}
               </span>
             </button>
             
             {/* Dropdown menu */}
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200">
+            <div className="absolute right-0 mt-2 w-52 bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft py-2 z-10 border-none">
               <button
                 onClick={signOut}
-                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                className="block w-full text-left px-6 py-3 text-base text-mint dark:text-dm-mint hover:bg-cream dark:hover:bg-dm-cream rounded-xl transition-all duration-200"
               >
                 Sign out
               </button>

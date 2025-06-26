@@ -15,7 +15,6 @@ import MoodChart from '../components/MoodChart';
 import ProductivityChart from '../components/ProductivityChart';
 import MeetingSummary from '../components/MeetingSummary';
 import WellnessTips from '../components/WellnessTips';
-import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -124,19 +123,18 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
-      <Navbar />
-      <div className="space-y-6">
+    <div className="space-y-8 font-soft bg-offwhite dark:bg-dm-offblack min-h-screen transition-all duration-200">
+      <div className="space-y-8 px-4 md:px-12">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-2">
+        <div className="mb-2">
+          <h1 className="text-4xl font-bold text-lavender dark:text-dm-lavender mb-2">Dashboard</h1>
+          <p className="text-mint dark:text-dm-mint text-lg mt-2">
             Welcome back! Here's your well-being overview.
           </p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {statCards.map((card, index) => {
             const Icon = card.icon;
             return (
@@ -145,25 +143,25 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card"
+                className="card flex flex-col justify-between h-full bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft p-8 transition-all duration-200"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">{card.title}</p>
-                    <p className="text-2xl font-bold text-gray-900">{card.value}</p>
+                    <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">{card.title}</p>
+                    <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{card.value}</p>
                   </div>
-                  <div className={`p-3 rounded-full bg-${card.color}-100`}>
-                    <Icon className={`h-6 w-6 text-${card.color}-600`} />
+                  <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+                    <Icon className="h-7 w-7 text-lavender dark:text-dm-lavender" />
                   </div>
                 </div>
-                <div className="mt-4 flex items-center">
+                <div className="mt-6 flex items-center">
                   {card.changeType === 'positive' ? (
-                    <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
+                    <TrendingUp className="h-5 w-5 text-mint dark:text-dm-mint mr-2" />
                   ) : (
-                    <TrendingDown className="h-4 w-4 text-red-500 mr-1" />
+                    <TrendingDown className="h-5 w-5 text-blush dark:text-dm-blush mr-2" />
                   )}
-                  <span className={`text-sm font-medium ${
-                    card.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
+                  <span className={`text-base font-medium ${
+                    card.changeType === 'positive' ? 'text-mint dark:text-dm-mint' : 'text-blush dark:text-dm-blush'
                   }`}>
                     {card.change} from last week
                   </span>
@@ -174,14 +172,14 @@ const Dashboard = () => {
         </div>
 
         {/* Charts Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="card"
+            className="card bg-mint dark:bg-dm-mint rounded-2xl shadow-soft p-8 transition-all duration-200"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Mood Trends</h3>
+            <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender mb-4">Mood Trends</h3>
             <MoodChart />
           </motion.div>
 
@@ -189,22 +187,22 @@ const Dashboard = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="card"
+            className="card bg-lavender dark:bg-dm-lavender rounded-2xl shadow-soft p-8 transition-all duration-200"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Productivity Trends</h3>
+            <h3 className="text-xl font-semibold text-mint dark:text-dm-mint mb-4">Productivity Trends</h3>
             <ProductivityChart />
           </motion.div>
         </div>
 
         {/* Bottom Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="card"
+            className="card bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft p-8 transition-all duration-200"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Meeting Analysis</h3>
+            <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender mb-4">Meeting Analysis</h3>
             <MeetingSummary />
           </motion.div>
 
@@ -212,9 +210,9 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
-            className="card"
+            className="card bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft p-8 transition-all duration-200"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Wellness Tips</h3>
+            <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender mb-4">Wellness Tips</h3>
             <WellnessTips />
           </motion.div>
         </div>

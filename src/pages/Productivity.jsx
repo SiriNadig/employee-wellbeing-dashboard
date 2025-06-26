@@ -99,30 +99,30 @@ const Productivity = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 font-soft bg-offwhite dark:bg-dm-offblack min-h-screen transition-all duration-200">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Productivity Tracker</h1>
-        <p className="text-gray-600 mt-2">
+      <div className="mb-2">
+        <h1 className="text-4xl font-bold text-lavender dark:text-dm-lavender mb-2">Productivity Tracker</h1>
+        <p className="text-mint dark:text-dm-mint text-lg mt-2">
           Monitor your daily productivity and identify patterns to optimize your work performance.
         </p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="card"
+          className="card bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Average Score</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.averageProductivity}/10</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Average Score</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.averageProductivity}/10</p>
             </div>
-            <div className="p-3 rounded-full bg-green-100">
-              <TrendingUp className="h-6 w-6 text-green-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <TrendingUp className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
@@ -131,15 +131,15 @@ const Productivity = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="card"
+          className="card bg-mint dark:bg-dm-mint rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Weekly Average</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.weeklyAverage}/10</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Weekly Average</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.weeklyAverage}/10</p>
             </div>
-            <div className="p-3 rounded-full bg-blue-100">
-              <Calendar className="h-6 w-6 text-blue-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <Calendar className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
@@ -148,15 +148,15 @@ const Productivity = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="card"
+          className="card bg-lavender dark:bg-dm-lavender rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Current Streak</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.currentStreak} days</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Current Streak</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.currentStreak} days</p>
             </div>
-            <div className="p-3 rounded-full bg-purple-100">
-              <Zap className="h-6 w-6 text-purple-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <Zap className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
@@ -165,29 +165,29 @@ const Productivity = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="card"
+          className="card bg-blush dark:bg-dm-blush rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Best Score</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.bestScore}/10</p>
+              <p className="text-base font-medium text-mint dark:text-dm-mint mb-1">Best Score</p>
+              <p className="text-3xl font-bold text-lavender dark:text-dm-lavender">{stats.bestScore}/10</p>
             </div>
-            <div className="p-3 rounded-full bg-yellow-100">
-              <Award className="h-6 w-6 text-yellow-600" />
+            <div className="p-4 rounded-full bg-cream dark:bg-dm-cream shadow-soft">
+              <Award className="h-7 w-7 text-lavender dark:text-dm-lavender" />
             </div>
           </div>
         </motion.div>
       </div>
 
       {/* Productivity Input and Chart */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="card"
+          className="card bg-mint dark:bg-dm-mint rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Rate Your Productivity</h3>
+          <h3 className="text-xl font-semibold text-lavender dark:text-dm-lavender mb-4">Rate Your Productivity</h3>
           <ProductivityInput onProductivitySubmitted={() => window.location.reload()} />
         </motion.div>
 
@@ -195,9 +195,9 @@ const Productivity = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="card"
+          className="card bg-lavender dark:bg-dm-lavender rounded-2xl shadow-soft p-8 transition-all duration-200"
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Productivity Trends</h3>
+          <h3 className="text-xl font-semibold text-mint dark:text-dm-mint mb-4">Productivity Trends</h3>
           <ProductivityChart />
         </motion.div>
       </div>

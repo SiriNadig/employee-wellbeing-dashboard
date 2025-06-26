@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -9,16 +9,36 @@ import {
   TrendingUp, 
   BarChart3,
   Users,
-  Settings
+  LogOut,
+  Sun,
+  Moon
 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const location = useLocation();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { signOut } = useAuth();
+  const [theme, setTheme] = useState('light');
+
+  // Auto-detect system theme
+  useEffect(() => {
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(systemDark ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', systemDark);
+  }, []);
+
+  // Apply theme on change
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: Home },
-    { name: 'Mood Tracker', href: '/mood', icon: Heart },
+    { name: 'Mood', href: '/mood', icon: Heart },
     { name: 'Meetings', href: '/meetings', icon: Calendar },
     { name: 'Productivity', href: '/productivity', icon: TrendingUp },
     { name: 'Reports', href: '/reports', icon: BarChart3 },
@@ -35,7 +55,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+            className="fixed inset-0 bg-babyblue bg-opacity-40 dark:bg-dm-babyblue dark:bg-opacity-40 z-40 md:hidden"
             onClick={() => setIsOpen(false)}
           />
         )}
@@ -46,26 +66,25 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         initial={{ x: -300 }}
         animate={{ x: isOpen ? 0 : -300 }}
         transition={{ type: 'spring', damping: 20 }}
-        className={`fixed md:static inset-y-0 left-0 z-50 w-64 bg-white shadow-lg border-r border-gray-200 transform ${
+        className={`fixed md:static inset-y-0 left-0 z-50 w-72 bg-cream dark:bg-dm-cream shadow-soft border-none rounded-2xl m-4 font-soft flex flex-col transition-all duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">
-              Well-Being
-            </h2>
+          <div className="flex items-center justify-between p-6">
+            <h2 className="text-xl font-bold text-lavender dark:text-dm-lavender tracking-wide">Well-Being</h2>
             <button
-              onClick={() => setIsOpen(false)}
-              className="md:hidden p-1 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              onClick={toggleTheme}
+              className="p-2 rounded-xl text-mint dark:text-dm-mint hover:bg-babyblue dark:hover:bg-dm-babyblue transition-all duration-200"
+              aria-label="Toggle theme"
             >
-              <X className="h-5 w-5" />
+              {theme === 'dark' ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
             </button>
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-2">
+          <nav className="flex-1 px-6 py-8 space-y-3">
             {navigation.map((item) => {
               const Icon = item.icon;
               return (
@@ -73,13 +92,15 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  className={`flex items-center px-5 py-3 text-base font-semibold rounded-2xl transition-all duration-200 gap-3 font-soft ${
                     isActive(item.href)
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? 'bg-babyblue dark:bg-dm-babyblue text-lavender dark:text-dm-lavender shadow-soft'
+                      : 'text-mint dark:text-dm-mint hover:bg-blush dark:hover:bg-dm-blush hover:text-dm-offblack'
                   }`}
                 >
-                  <Icon className="h-5 w-5 mr-3" />
+                  <span className={`w-10 h-10 flex items-center justify-center rounded-full bg-cream dark:bg-dm-cream shadow-soft mr-2`}>
+                    <Icon className="h-6 w-6" />
+                  </span>
                   {item.name}
                 </Link>
               );
@@ -87,14 +108,21 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t border-gray-200">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <Users className="h-4 w-4 text-blue-600" />
+          <div className="p-6 space-y-4">
+            <button
+              onClick={signOut}
+              className="w-full flex items-center justify-center gap-3 px-5 py-3 text-base font-semibold rounded-2xl bg-blush dark:bg-dm-blush text-dm-offblack hover:bg-babyblue dark:hover:bg-dm-babyblue shadow-soft transition-all duration-200 font-soft"
+            >
+              <LogOut className="h-6 w-6" />
+              Logout
+            </button>
+            <div className="flex items-center space-x-4">
+              <div className="w-10 h-10 bg-babyblue dark:bg-dm-babyblue rounded-full flex items-center justify-center shadow-soft">
+                <Users className="h-5 w-5 text-lavender dark:text-dm-lavender" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900">Team</p>
-                <p className="text-xs text-gray-500">View team insights</p>
+                <p className="text-base font-semibold text-lavender dark:text-dm-lavender">Team</p>
+                <p className="text-xs text-mint dark:text-dm-mint">View team insights</p>
               </div>
             </div>
           </div>

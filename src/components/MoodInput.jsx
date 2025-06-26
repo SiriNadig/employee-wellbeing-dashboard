@@ -10,11 +10,11 @@ const MoodInput = ({ onMoodSubmitted }) => {
   const [submitted, setSubmitted] = useState(false)
 
   const moodOptions = [
-    { value: 1, emoji: '😞', label: 'Very Bad', color: 'text-red-600' },
-    { value: 2, emoji: '😕', label: 'Bad', color: 'text-orange-600' },
-    { value: 3, emoji: '😐', label: 'Okay', color: 'text-yellow-600' },
-    { value: 4, emoji: '🙂', label: 'Good', color: 'text-blue-600' },
-    { value: 5, emoji: '😊', label: 'Great', color: 'text-green-600' }
+    { value: 1, emoji: '🥺', label: 'Very Bad', color: 'text-blush dark:text-dm-blush' },
+    { value: 2, emoji: '😟', label: 'Bad', color: 'text-lavender dark:text-dm-lavender' },
+    { value: 3, emoji: '😐', label: 'Okay', color: 'text-mint dark:text-dm-mint' },
+    { value: 4, emoji: '🙂', label: 'Good', color: 'text-babyblue dark:text-dm-babyblue' },
+    { value: 5, emoji: '🌸', label: 'Great', color: 'text-cream dark:text-dm-cream' }
   ]
 
   const handleSubmit = async e => {
@@ -58,14 +58,14 @@ const MoodInput = ({ onMoodSubmitted }) => {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 0.5 }}
-          className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          className="w-16 h-16 bg-mint dark:bg-dm-mint rounded-full flex items-center justify-center mx-auto mb-4"
         >
-          <Heart className="h-8 w-8 text-green-600" />
+          <Heart className="h-8 w-8 text-babyblue dark:text-dm-babyblue" />
         </motion.div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+        <h3 className="text-lg font-semibold text-mint dark:text-dm-mint mb-2">
           Mood Submitted!
         </h3>
-        <p className="text-gray-600">
+        <p className="text-mint dark:text-dm-mint">
           Thank you for tracking your mood today.
         </p>
       </motion.div>
@@ -87,16 +87,14 @@ const MoodInput = ({ onMoodSubmitted }) => {
               onClick={() => setMood(option.value)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className={`flex flex-col items-center space-y-2 p-3 rounded-lg transition-all duration-200 ${
+              className={`flex flex-col items-center space-y-2 p-3 rounded-2xl font-soft transition-all duration-200 shadow-soft focus:outline-none focus:ring-2 focus:ring-babyblue dark:focus:ring-dm-babyblue ${
                 mood === option.value
-                  ? 'bg-blue-100 border-2 border-blue-300'
-                  : 'bg-gray-50 hover:bg-gray-100 border-2 border-transparent'
+                  ? 'bg-babyblue dark:bg-dm-babyblue border-2 border-mint dark:border-dm-mint'
+                  : 'bg-cream dark:bg-dm-cream hover:bg-mint dark:hover:bg-dm-mint border-2 border-transparent'
               }`}
             >
-              <span className="text-2xl">{option.emoji}</span>
-              <span className={`text-xs font-medium ${option.color}`}>
-                {option.label}
-              </span>
+              <span className="text-2xl animate-pulse">{option.emoji}</span>
+              <span className={`text-xs font-medium ${option.color}`}>{option.label}</span>
             </motion.button>
           ))}
         </div>
@@ -114,15 +112,15 @@ const MoodInput = ({ onMoodSubmitted }) => {
           max="5"
           value={mood}
           onChange={(e) => setMood(Number(e.target.value))}
-          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+          className="w-full h-2 bg-mint dark:bg-dm-mint rounded-lg appearance-none cursor-pointer slider"
           style={{
-            background: `linear-gradient(to right, #ef4444 0%, #f97316 25%, #eab308 50%, #3b82f6 75%, #10b981 100%)`
+            background: `linear-gradient(to right, #FADBD8 0%, #D5F5E3 50%, #D6EAF8 100%)`
           }}
         />
         <div className="flex justify-between text-xs text-gray-500 mt-1">
-          <span>😞</span>
-          <span>😐</span>
-          <span>😊</span>
+          <span>🥺</span>
+          <span>��</span>
+          <span>🌸</span>
         </div>
       </div>
 
@@ -137,7 +135,7 @@ const MoodInput = ({ onMoodSubmitted }) => {
           onChange={(e) => setNote(e.target.value)}
           placeholder="How was your day? Any specific feelings or events?"
           rows={3}
-          className="input-field resize-none"
+          className="input-field resize-none font-soft"
           maxLength={500}
         />
         <div className="flex justify-between items-center mt-1">
@@ -165,7 +163,7 @@ const MoodInput = ({ onMoodSubmitted }) => {
         disabled={loading}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed font-soft rounded-2xl shadow-soft"
       >
         {loading ? (
           <>
