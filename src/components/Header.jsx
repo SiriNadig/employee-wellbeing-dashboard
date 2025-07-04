@@ -1,8 +1,10 @@
-import { Menu, Bell, User } from 'lucide-react';
+import { Menu, Bell, User, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useState } from 'react';
 
 const Header = ({ onMenuClick }) => {
   const { user, signOut } = useAuth();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
     <header className="bg-babyblue dark:bg-dm-babyblue shadow-soft border-none rounded-2xl px-8 py-4 my-4 mx-2 font-soft transition-all duration-200">
@@ -23,30 +25,42 @@ const Header = ({ onMenuClick }) => {
         </div>
 
         {/* Right side */}
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-6 relative">
           {/* Notifications */}
           <button className="p-3 rounded-xl text-mint dark:text-dm-mint hover:bg-cream dark:hover:bg-dm-cream transition-all duration-200">
             <Bell className="h-6 w-6" />
           </button>
 
-          {/* User menu */}
-          <div className="relative">
-            <button className="flex items-center space-x-2 p-3 rounded-xl text-mint dark:text-dm-mint hover:bg-cream dark:hover:bg-dm-cream transition-all duration-200">
+          {/* User menu (mobile only) */}
+          <div className="relative md:hidden">
+            <button
+              onClick={() => setDropdownOpen((v) => !v)}
+              className="flex items-center space-x-2 p-3 rounded-xl text-mint dark:text-dm-mint font-semibold focus:outline-none"
+            >
               <User className="h-6 w-6" />
-              <span className="hidden md:block text-base font-semibold">
+              <span className="text-base font-semibold">
                 {user?.email?.split('@')[0] || 'User'}
               </span>
             </button>
-            
-            {/* Dropdown menu */}
-            <div className="absolute right-0 mt-2 w-52 bg-babyblue dark:bg-dm-babyblue rounded-2xl shadow-soft py-2 z-10 border-none">
-              <button
-                onClick={signOut}
-                className="block w-full text-left px-6 py-3 text-base text-mint dark:text-dm-mint hover:bg-cream dark:hover:bg-dm-cream rounded-xl transition-all duration-200"
-              >
-                Sign out
-              </button>
-            </div>
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-dm-cream rounded-xl shadow-lg z-50">
+                <button
+                  onClick={signOut}
+                  className="w-full flex items-center gap-2 px-4 py-3 text-base font-semibold rounded-xl text-blush dark:text-dm-blush hover:bg-babyblue dark:hover:bg-dm-babyblue transition-all duration-200"
+                >
+                  <LogOut className="h-5 w-5" />
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* User info (desktop only) */}
+          <div className="hidden md:flex items-center space-x-2 p-3 rounded-xl text-mint dark:text-dm-mint font-semibold">
+            <User className="h-6 w-6" />
+            <span className="text-base font-semibold">
+              {user?.email?.split('@')[0] || 'User'}
+            </span>
           </div>
         </div>
       </div>

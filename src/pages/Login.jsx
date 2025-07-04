@@ -11,6 +11,7 @@ const Login = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  // Redirect to dashboard if already signed in or after OAuth redirect
   useEffect(() => {
     if (user) navigate('/');
   }, [user, navigate]);
@@ -33,11 +34,6 @@ const Login = () => {
       console.error('Error signing in with Google:', error);
       alert('Failed to sign in. Please try again.');
     }
-  };
-
-  const handleDemoLogin = () => {
-    // For demo purposes, just navigate to the dashboard
-    navigate('/');
   };
 
   const features = [
@@ -148,14 +144,6 @@ const Login = () => {
               <span className="font-medium text-gray-700">
                 Continue with Google
               </span>
-            </button>
-
-            {/* Demo Login Button */}
-            <button
-              onClick={handleDemoLogin}
-              className="w-full bg-blue-600 text-white rounded-lg px-4 py-3 font-medium hover:bg-blue-700 transition-colors duration-200"
-            >
-              Try Demo Version
             </button>
 
             <div className="mt-6 text-center">

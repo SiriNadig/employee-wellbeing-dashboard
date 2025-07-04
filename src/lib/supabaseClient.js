@@ -1,24 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co'
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-// Create a mock Supabase client for demo purposes when real credentials aren't available
-const createMockClient = () => ({
-  auth: {
-    getSession: async () => ({ data: { session: null } }),
-    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
-    signOut: async () => ({ error: null })
-  },
-  from: () => ({
-    insert: () => ({ select: () => ({ data: [{}], error: null }) }),
-    select: () => ({ order: () => ({ limit: () => ({ data: [], error: null }) }) })
-  })
-})
-
-export const supabase = supabaseUrl === 'https://placeholder.supabase.co' 
-  ? createMockClient() 
-  : createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Database helper functions
 export const db = {

@@ -1,45 +1,33 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-// import { supabase } from '../lib/supabaseClient';
+import { supabase } from '../lib/supabaseClient';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState({ id: 'demo-user', email: 'demo@example.com' }); // Temporary demo user
-  const [loading, setLoading] = useState(false); // Set to false to skip loading
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Temporarily skip Supabase authentication for demo purposes
-    // const getInitialSession = async () => {
-    //   try {
-    //     const { data: { session } } = await supabase.auth.getSession();
-    //     setUser(session?.user ?? null);
-    //   } catch (error) {
-    //     console.error('Error getting session:', error);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
+    const getSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+      setLoading(false);
+    };
+    getSession();
 
-    // getInitialSession();
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
+      setLoading(false);
+    });
 
-    // Listen for auth changes
-    // const { data: { subscription } } = supabase.auth.onAuthStateChange(
-    //   async (event, session) => {
-    //     setUser(session?.user ?? null);
-    //     setLoading(false);
-    //   }
-    // );
-
-    // return () => subscription.unsubscribe();
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
   }, []);
 
   const signOut = async () => {
-    try {
-      // await supabase.auth.signOut();
-      setUser(null);
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
+    await supabase.auth.signOut();
+    setUser(null);
   };
 
   const value = {
